@@ -8,7 +8,7 @@ docker-compose ps
 docker exec -it {NAME} bash
 ```
 
-##　ディレクトリ説明
+## ディレクトリ説明
 
 ```
 app: アプリケーションのメインのコードが含まれる場所。
