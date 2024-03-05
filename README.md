@@ -27,7 +27,8 @@ curl -X DELETE http://localhost:3000/api/v1/regexes/{ここにidを指定}
 ```
 
 ## ディレクトリ説明
-
+### 参考になるやつ
+https://qiita.com/Yaruki00/items/03eb2b6dd96dc44f18b6
 ```
 app: アプリケーションのメインのコードが含まれる場所。
 
