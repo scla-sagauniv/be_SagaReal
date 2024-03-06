@@ -1,0 +1,248 @@
+# swaggerバージョン宣言
+swagger: "2.0"
+
+# Table users {
+#   uid varchar [primary key]
+#   username varchar
+#   email varchar
+#   created_at timestamp
+# }
+
+# Table posts {
+#   id integer [primary key]
+#   front_cam_url varchar
+#   back_cam_url varchar
+#   user_id varchar [ref: > users.uid]
+#   created_at timestamp
+#   delete_flag bool
+# }
+
+# 基本情報
+info:
+  # バージョン表記
+  version: 1.0.0
+  # タイトル
+  title: gabaithon SAGA_REALのAPI
+  # 説明
+  # description: |
+  #   - Zenn投稿用にSwaggerサンプルを作りました。
+  #   - 各種エンドポイントは適当です
+# リクエスト方式
+schemes:
+  - http
+  - https
+# ホスト
+host: localhost:3000
+# 基底パス
+basePath: /api/v1
+# エンドポイント
+paths:
+  /users:
+    get:
+      summary: ユーザ一覧を取得
+      tags:
+        - users
+      responses:
+        200:
+          description: hoge
+          schema:
+            type: array
+            example: [{ uid: ef304778ada8a6, name: hoge, email: hoge@hoge.com }]
+    post:
+      tags:
+        - users
+      summary: ユーザを新規作成
+      parameters:
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              uid:
+                type: string
+                example: ef304778ada8a6
+              name:
+                type: string
+                example: hoge
+              email:
+                type: string
+                example: hoge@hoge.com
+          required: true
+      responses:
+        201:
+          description: OK
+          schema:
+            type: object
+            properties:
+              uid:
+                type: string
+                example: ef304778ada8a6
+              name:
+                type: string
+                example: hoge
+              email:
+                type: string
+                example: hoge@hoge.com
+  /users?uid={uid}:
+    get:
+      summary: 指定したユーザの情報を取得
+      tags:
+        - users
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              uid:
+                type: string
+                example: ef304778ada8a6
+              name:
+                type: string
+                example: hoge
+              email:
+                type: string
+                example: hoge@hoge.com
+      parameters:
+        - name: uid
+          in: query
+          type: string
+          required: true
+    delete:
+      summary: 指定したユーザを削除
+      tags:
+        - users
+      responses:
+        204:
+          description: OK
+
+    put:
+      summary: 指定したユーザの情報を更新
+      tags:
+        - users
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              uid:
+                type: string
+                example: ef304778ada8a6
+              name:
+                type: string
+                example: hoge
+              email:
+                type: string
+                example:
+  /posts:
+    get:
+      summary: 投稿一覧を取得
+      tags:
+        - posts
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            example:
+              [
+                {
+                  id: 1,
+                  front_cam_url: hoge,
+                  back_cam_url: hoge,
+                  user_id: ef304778ada8a6,
+                  created_at: 2021-01-01T00:00:00,
+                  delete_flag: false,
+                },
+              ]
+    post:
+      summary: 投稿を新規作成
+      tags:
+        - posts
+      responses:
+        201:
+          description: OK
+          schema:
+            type: object
+            properties:
+              front_cam_url:
+                type: string
+                example: hoge
+              back_cam_url:
+                type: string
+                example: hoge
+              user_id:
+                type: string
+                example: ef304778ada8a6
+
+  /posts?id={id}:
+    get:
+      summary: 指定した投稿の情報を取得
+      tags:
+        - posts
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              id:
+                type: integer
+                example: 1
+              front_cam_url:
+                type: string
+                example: hoge
+              back_cam_url:
+                type: string
+                example: hoge
+              user_id:
+                type: string
+                example: ef304778ada8a6
+              created_at:
+                type: string
+                example: 2021-01-01T00:00:00
+              delete_flag:
+                type: boolean
+                example: false
+      parameters:
+        - name: id
+          in: query
+          type: integer
+          required: true
+    delete:
+      summary: 指定した投稿を削除
+      tags:
+        - posts
+      responses:
+        204:
+          description: OK
+
+    put:
+      summary: 指定した投稿の情報を更新
+      tags:
+        - posts
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              id:
+                type: integer
+                example: 1
+              front_cam_url:
+                type: string
+                example: hoge
+              back_cam_url:
+                type: string
+                example: hoge
+              user_id:
+                type: string
+                example: ef304778ada8a6
+              created_at:
+                type: string
+                example: 2021-01-01T00:00:00
+              delete_flag:
+                type: boolean
+                example: false
