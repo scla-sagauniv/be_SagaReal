@@ -6,6 +6,8 @@ docker-compose up -d
 docker-compose ps
 // psでコンテナを確認したら、webと書かれているコンテナのNAMEをコピーして、{NAME}を置き換える
 docker exec -it {NAME} bash
+
+rails db:migrate (どうしてもならなかったら、rails db:migrate:reset)
 ```
 
 ## 動作確認
