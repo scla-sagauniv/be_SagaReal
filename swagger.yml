@@ -47,7 +47,16 @@ paths:
           description: hoge
           schema:
             type: array
-            example: [{ uid: ef304778ada8a6, name: hoge, email: hoge@hoge.com }]
+            example: 
+              [
+                { 
+                  uid: ef304778ada8a6, 
+                  name: hoge, 
+                  email: hoge@hoge.com,
+                  created_at: 2021-01-01T00:00:00,
+                  updated_at: 2022-01-01T00:00:00,
+                }
+              ]
     post:
       tags:
         - users
@@ -83,7 +92,13 @@ paths:
               email:
                 type: string
                 example: hoge@hoge.com
-  /users?uid={uid}:
+              created_at:
+                type: string
+                example: 2021-01-01T00:00:00
+              updated_at:
+                type: string
+                example: 2022-01-01T00:00:00
+  /users/:uid:
     get:
       summary: 指定したユーザの情報を取得
       tags:
@@ -103,6 +118,12 @@ paths:
               email:
                 type: string
                 example: hoge@hoge.com
+              created_at:
+                type: string
+                example: 2021-01-01T00:00:00
+              updated_at:
+                type: string
+                example: 2022-01-01T00:00:00
       parameters:
         - name: uid
           in: query
@@ -115,6 +136,24 @@ paths:
       responses:
         204:
           description: OK
+          schema:
+            type: object
+            properties:
+              uid:
+                type: string
+                example: ef304778ada8a6
+              name:
+                type: string
+                example: hoge
+              email:
+                type: string
+                example: hoge@hoge.com
+              created_at:
+                type: string
+                example: 2021-01-01T00:00:00
+              updated_at:
+                type: string
+                example: 2022-01-01T00:00:00
       parameters:
         - name: uid
           in: query
@@ -139,7 +178,13 @@ paths:
                 example: hoge
               email:
                 type: string
-                example:
+                example: hoge@hoge.com
+              created_at:
+                type: string
+                example: 2021-01-01T00:00:00
+              updated_at:
+                type: string
+                example: 2022-01-01T00:00:00
       parameters:
         - name: uid
           in: query
@@ -161,9 +206,10 @@ paths:
                   id: 1,
                   front_cam_url: hoge,
                   back_cam_url: hoge,
-                  user_id: ef304778ada8a6,
-                  created_at: 2021-01-01T00:00:00,
+                  user_uid: ef304778ada8a6,
                   delete_flag: false,
+                  created_at: 2021-01-01T00:00:00,
+                  updated_at: 2022-01-01T00:00:00,
                 },
               ]
     post:
@@ -176,17 +222,29 @@ paths:
           schema:
             type: object
             properties:
+              id:
+                type: string
+                example: 1
               front_cam_url:
                 type: string
                 example: hoge
               back_cam_url:
                 type: string
                 example: hoge
-              user_id:
+              user_uid:
                 type: string
                 example: ef304778ada8a6
+              delete_flag:
+                type: boolean
+                example: false
+              created_at:
+                type: string
+                example: 2021-01-01T00:00:00
+              updated_at:
+                type: string
+                example: 2022-01-01T00:00:00
 
-  /posts?id={id}:
+  /posts/:id:
     get:
       summary: 指定した投稿の情報を取得
       tags:
@@ -198,7 +256,7 @@ paths:
             type: object
             properties:
               id:
-                type: integer
+                type: string
                 example: 1
               front_cam_url:
                 type: string
@@ -206,15 +264,18 @@ paths:
               back_cam_url:
                 type: string
                 example: hoge
-              user_id:
+              user_uid:
                 type: string
                 example: ef304778ada8a6
-              created_at:
-                type: string
-                example: 2021-01-01T00:00:00
               delete_flag:
                 type: boolean
                 example: false
+              created_at:
+                type: string
+                example: 2021-01-01T00:00:00
+              updated_at:
+                type: string
+                example: 2022-01-01T00:00:00
       parameters:
         - name: id
           in: query
@@ -227,6 +288,35 @@ paths:
       responses:
         204:
           description: OK
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                example: 1
+              front_cam_url:
+                type: string
+                example: hoge
+              back_cam_url:
+                type: string
+                example: hoge
+              user_uid:
+                type: string
+                example: ef304778ada8a6
+              delete_flag:
+                type: boolean
+                example: false
+              created_at:
+                type: string
+                example: 2021-01-01T00:00:00
+              updated_at:
+                type: string
+                example: 2022-01-01T00:00:00
+      parameters:
+        - name: id
+          in: query
+          type: integer
+          required: true
 
     put:
       summary: 指定した投稿の情報を更新
@@ -238,21 +328,29 @@ paths:
           schema:
             type: object
             properties:
-              id:
-                type: integer
-                example: 1
               front_cam_url:
                 type: string
                 example: hoge
               back_cam_url:
                 type: string
                 example: hoge
-              user_id:
+              id:
+                type: string
+                example: 1
+              user_uid:
                 type: string
                 example: ef304778ada8a6
-              created_at:
-                type: string
-                example: 2021-01-01T00:00:00
               delete_flag:
                 type: boolean
                 example: false
+              created_at:
+                type: string
+                example: 2021-01-01T00:00:00
+              updated_at:
+                type: string
+                example: 2022-01-01T00:00:00
+      parameters:
+        - name: id
+          in: query
+          type: integer
+          required: true
