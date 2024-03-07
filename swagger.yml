@@ -83,7 +83,7 @@ paths:
               email:
                 type: string
                 example: hoge@hoge.com
-  /users?uid={uid}:
+  /users/:uid:
     get:
       summary: 指定したユーザの情報を取得
       tags:
@@ -186,7 +186,7 @@ paths:
                 type: string
                 example: ef304778ada8a6
 
-  /posts?id={id}:
+  /posts/:id:
     get:
       summary: 指定した投稿の情報を取得
       tags:
