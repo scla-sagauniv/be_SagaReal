@@ -32,9 +32,8 @@ module Api
       
       def destroy
         user = User.find_by(uid: params[:id])
-      
+        
         if user.present?
-          user.posts.destroy_all
           user.destroy
           render json: { status: 'SUCCESS', message: 'Deleted the user and associated posts', data: user }
         else

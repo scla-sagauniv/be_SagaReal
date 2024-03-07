@@ -36,15 +36,15 @@ module Api
         render json: { status: 'SUCCESS', message: 'Deleted the post', data: post }
       end
 
-      def destroy_all(conditions = nil)
-        if conditions
-          where(conditions).destroy_all
-        else
-          records.each(&:destroy)
-          reset
-          self
-        end
-      end
+      # def destroy_all(conditions = nil)
+      #   if conditions
+      #     where(conditions).destroy_all
+      #   else
+      #     records.each(&:destroy)
+      #     reset
+      #     self
+      #   end
+      # end
 
       private
 
