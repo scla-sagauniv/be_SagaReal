@@ -115,6 +115,11 @@ paths:
       responses:
         204:
           description: OK
+      parameters:
+        - name: uid
+          in: query
+          type: string
+          required: true
 
     put:
       summary: 指定したユーザの情報を更新
@@ -135,6 +140,11 @@ paths:
               email:
                 type: string
                 example:
+      parameters:
+        - name: uid
+          in: query
+          type: string
+          required: true
   /posts:
     get:
       summary: 投稿一覧を取得

@@ -31,9 +31,15 @@ module Api
       end
       
       def destroy
-        user = User.find(params[:id])
-        user.destroy
-        render json: { status: 'SUCCESS', message: 'Deleted the user', data: user }
+        user = User.find_by(uid: params[:id])
+      
+        if user.present?
+          user.posts.destroy_all
+          user.destroy
+          render json: { status: 'SUCCESS', message: 'Deleted the user and associated posts', data: user }
+        else
+          render json: { status: 'ERROR', message: 'User not found' }, status: :not_found
+        end
       end
 
       private
@@ -46,7 +52,7 @@ module Api
 
 
       def user_params
-        params.require(:user).permit(:uid, :name, :email)
+        params.permit(:uid, :name, :email)
       end
       
       def user_update_params
